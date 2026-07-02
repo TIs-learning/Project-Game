@@ -200,6 +200,8 @@ CardElement adalah enum yang mendefinisikan jenis elemen kartu dalam permainan (
 
 ### File CardKind.cs
 
+CardKind adalah sebuah enumeration (enum) yang digunakan untuk mendefinisikan jenis-jenis kartu yang tersedia dalam permainan. Dengan menggunakan enum, setiap kartu hanya dapat memiliki satu kategori yang telah ditentukan sehingga memudahkan sistem dalam mengidentifikasi perilaku kartu saat dimainkan
+
 ---
 
 ### File EffectType.cs
