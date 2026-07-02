@@ -47,6 +47,54 @@ Animasi menjadi lebih natural dibanding perpindahan linear biasa.
 
 ### File CardData.cs
 
+1. Mengimpor library Unity yang menyediakan berbagai class dasar seperti ScriptableObject, Sprite, dan atribut Inspector
+
+2. Atribut ini membuat menu baru pada Unity.
+
+3. Ketika dipilih, Unity otomatis membuat asset baru bertipe CardData.
+
+Nama awal asset adalah: New Card 
+
+4. CardData merupakan turunan dari ScriptableObject.
+
+Artinya objek ini hanya menyimpan data dan tidak perlu ditempel pada GameObject seperti MonoBehaviour.
+
+Perbedaannya:
+
+MonoBehaviour	ScriptableObject
+Menempel pada GameObject	Berupa Asset
+Digunakan untuk logika game	Digunakan untuk menyimpan data
+Ada di Scene	Ada di Project
+
+5. Memberi judul Basic Info pada Inspector.
+
+6. Membuat public nama kartu contoh: fire attack
+
+7. TextArea membuat kotak teks yang lebih besar di Inspector.
+
+8. Menyimpan gambar kartu.
+
+9. Memberi judul kedua pada Inspector.
+
+10. Menentukan elemen kartu.
+
+Misalnya
+
+Fire
+Ice
+Shadow
+Neutral
+
+Biasanya CardElement adalah enum
+
+11. Menentukan jenis kartu.
+
+12. Menentukan efek yang dimiliki kartu.
+
+13. Besarnya efek kartu.
+
+14. Menentukan apakah kartu memiliki Element Symbol.
+    
 ---
 
 ### File CardDisplay.cs
