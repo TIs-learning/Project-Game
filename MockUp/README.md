@@ -1,7 +1,7 @@
 # MockUp
 
-Folder ini berisi rancangan awal (mockup) antarmuka permainan yang digunakan sebagai referensi selama proses pengembangan game.
 ---
+Folder ini berisi rancangan awal (mockup) antarmuka permainan yang digunakan sebagai referensi selama proses pengembangan game.
 
 ## Daftar Mockup
 
