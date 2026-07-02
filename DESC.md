@@ -116,6 +116,7 @@ Ultimate:
 
 # Struktur Folder 
 
+```text
 Game-Project/
 │
 ├── README.md
@@ -140,13 +141,14 @@ Game-Project/
 ├── Animation/
 ├── Packages/
 └── ProjectSettings/
+```
 
 ---
 
-# What`s Next?
-📖 Game Overview (konsep game)
-🎲 Gameplay Rules (aturan permainan)
-🃏 Card Database (detail semua kartu)
-⚖️ Game Balance (damage, cooldown, biaya, dll.)
-🔄 Game Flow (alur permainan dari awal hingga akhir)
-🏗️ Architecture (struktur folder, scene, dan script)
+# Pengembangan Selanjutnya?
+1. 📖 Game Overview (konsep game)
+2. 🎲 Gameplay Rules (aturan permainan)
+3. 🃏 Card Database (detail semua kartu)
+4. ⚖️ Game Balance (damage, cooldown, biaya, dll.)
+5. 🔄 Game Flow (alur permainan dari awal hingga akhir)
+6. 🏗️ Architecture (struktur folder, scene, dan script)
