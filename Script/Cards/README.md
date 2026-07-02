@@ -99,6 +99,97 @@ Biasanya CardElement adalah enum
 
 ### File CardDisplay.cs
 
+1. Library yang digunakan:
+
+Library	Fungsi
+UnityEngine	Fitur dasar Unity
+UnityEngine.UI	Menggunakan komponen UI seperti Image
+UnityEngine.EventSystems	Mendeteksi event mouse (Hover, Click, Exit)
+
+2. Script ini mengimplementasikan tiga interface.
+
+3. IPointerEnterHandler
+
+Dipanggil ketika mouse masuk ke area kartu.
+
+4. IPointerExitHandler
+
+Dipanggil ketika mouse keluar dari kartu.
+
+5. IPointerClickHandler
+
+Dipanggil ketika kartu diklik.
+
+6. Menentukan apakah kartu ini milik pemain.
+
+Jika
+
+true
+
+maka kartu dapat dimainkan.
+
+Jika
+
+false
+
+klik akan diabaikan.
+
+Biasanya digunakan agar kartu lawan tidak bisa dimainkan.
+
+7. Menyimpan informasi kartu.
+
+8. Komponen UI yang menampilkan gambar kartu.
+
+9. Referensi menuju HandManager.
+
+Saat pemain memainkan kartu, script ini akan memanggil
+
+10. Method ini digunakan untuk mengisi tampilan kartu.
+
+Menyimpan data kartu. Kemudian Mengubah gambar kartu sesuai data.
+
+
+11. Saat mouse masuk
+
+↓
+
+HOVER
+
+ditampilkan pada Console.
+
+Saat ini hanya digunakan untuk debugging.
+
+12. Dipanggil ketika mouse keluar dari kartu.
+
+Saat ini hanya debugging.
+
+13. Method ini kemungkinan digunakan untuk pengujian tombol di Inspector.
+
+14. Method sederhana yang meminta HandManager memainkan kartu ini.
+
+15. Jika kartu bukan milik pemain
+
+↓
+
+proses dihentikan.
+
+16. Menampilkan log bahwa kartu berhasil diklik
+
+17. Memastikan HandManager ada.
+
+18. Kalau ada
+
+↓
+dipanggil.
+
+Kalau tidak ada
+
+↓
+
+HAND MANAGER IS NULL
+
+ditampilkan agar programmer tahu ada kesalahan.
+
 ---
 
 ### File CardElement.cs
