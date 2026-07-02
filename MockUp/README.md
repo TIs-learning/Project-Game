@@ -7,7 +7,7 @@ Folder ini berisi rancangan awal (mockup) antarmuka permainan yang digunakan seb
 
 | File | Deskripsi |
 |------|-----------|
-| MockUp Tampilan Game.jpeg | Mockup alur pertandingan dan tata letak elemen permainan. |
+| MockUp Tampilan Game.jpeg | Mockup proses umum pertandingan dan tata letak elemen permainan. |
 | MockUp pertandingan game.png | Mockup tampilan utama permainan saat pemain sedang bermain. |
 
 ## Tujuan
