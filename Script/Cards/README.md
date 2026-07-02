@@ -194,6 +194,8 @@ ditampilkan agar programmer tahu ada kesalahan.
 
 ### File CardElement.cs
 
+CardElement adalah enum yang mendefinisikan jenis elemen kartu dalam permainan (Neutral, Fire, Ice, Shadow). Enum ini digunakan oleh CardData untuk menyimpan identitas elemen setiap kartu dan menjadi dasar berbagai mekanik permainan seperti efek khusus, ultimate, dan strategi masing-masing elemen.
+
 ---
 
 ### File CardKind.cs
