@@ -102,9 +102,9 @@ Biasanya CardElement adalah enum
 1. Library yang digunakan:
 
 Library	Fungsi
-UnityEngine	Fitur dasar Unity
-UnityEngine.UI	Menggunakan komponen UI seperti Image
-UnityEngine.EventSystems	Mendeteksi event mouse (Hover, Click, Exit)
+- UnityEngine	Fitur dasar Unity
+- UnityEngine.UI	Menggunakan komponen UI seperti Image
+- UnityEngine.EventSystems	Mendeteksi event mouse (Hover, Click, Exit)
 
 2. Script ini mengimplementasikan tiga interface.
 
