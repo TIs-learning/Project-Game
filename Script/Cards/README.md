@@ -202,6 +202,42 @@ CardElement adalah enum yang mendefinisikan jenis elemen kartu dalam permainan (
 
 CardKind adalah sebuah enumeration (enum) yang digunakan untuk mendefinisikan jenis-jenis kartu yang tersedia dalam permainan. Dengan menggunakan enum, setiap kartu hanya dapat memiliki satu kategori yang telah ditentukan sehingga memudahkan sistem dalam mengidentifikasi perilaku kartu saat dimainkan
 
+Note: Penjelasan setiap kategori di Presentasikan / Laporan Project
+
 ---
 
 ### File EffectType.cs
+
+EffectType merupakan enumeration (enum) yang digunakan untuk mendefinisikan seluruh jenis efek yang dapat dimiliki oleh kartu dalam permainan. Enum ini menjadi acuan bagi sistem permainan untuk menentukan aksi yang harus dijalankan ketika sebuah kartu dimainkan.
+
+Dengan adanya EffectType, setiap kartu hanya perlu menyimpan jenis efeknya, sedangkan implementasi efek tersebut dijalankan oleh script lain seperti GameManager, EffectManager, atau HandManager
+
+* Efek Netral
+- Efek mengambil kartu dari deck.
+- Menyerang pemain lain.
+- Melindungi pemain dari serangan.
+- Mengulangi efek kartu sebelumnya.
+- Menyalin efek kartu lain.
+- Mengizinkan pemain memilih target tertentu.
+- Melindungi pemain atau kartu tertentu.
+
+* Efek Api
+- Membuang kartu milik lawan.
+- Mengambil kartu baru atau menyegarkan tangan pemain.
+- Serangan area dengan efek lebih besar.
+
+* Efek Es
+- Membekukan pemain.
+- Efek ledakan es.
+- Memberikan tambahan kartu atau sumber daya.
+
+* Efek Bayangan
+- Melihat kartu pemain lain.
+- Mengacaukan strategi lawan.
+- Menebak kartu pemain lain.
+
+Jika tebakan benar, efek tertentu dijalankan.
+
+- Tidak memiliki efek.
+
+Biasanya digunakan sebagai nilai default.
