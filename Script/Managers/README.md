@@ -188,6 +188,142 @@ Sisa deck menjadi
 
 # GameManager.cs
 
+1. Library	Fungsi
+- System.Collections	Digunakan untuk IEnumerator pada Coroutine (EnemyTurn()).
+- UnityEngine	Menyediakan MonoBehaviour, Debug, WaitForSeconds, FindFirstObjectByType, dan fungsi dasar Unity lainnya.
+- TMPro	Menampilkan teks giliran menggunakan TMP_Text.
+- UnityEngine.UI	Mengontrol komponen UI seperti Image untuk ikon Shield dan Freeze.
+
+2. Menentukan apakah pemain sedang terkena efek Freeze.
+Jika bernilai true, maka giliran pemain tersebut akan dilewati satu kali.  
+
+3. Menentukan apakah pemain masih berada dalam permainan.
+Jika false, maka pemain akan dilewati pada sistem pergantian giliran.
+
+4. Menentukan apakah pemain sedang memiliki efek Shield.
+
+5. Menentukan giliran yang sedang berlangsung.
+
+6. Digunakan agar script lain dapat mengakses GameManager tanpa harus mencari GameObject.
+
+7. Dijalankan saat GameObject dibuat.
+
+8. Mengaktifkan atau menonaktifkan ikon Shield sesuai status pemain.
+
+9. Menampilkan ikon Freeze ketika pemain terkena efek Freeze.
+
+10. Mengubah tulisan pada UI.
+
+11. Fungsinya:
+
+- Mengganti giliran.
+- Melewati pemain yang kalah.
+- Mengecek Freeze.
+- Menjalankan AI musuh.
+- Mengecek kondisi kalah.
+
+Langkah 1
+Player
+
+↓
+
+Enemy1
+
+↓
+
+Enemy2
+
+↓
+
+Player
+
+Pergantian dilakukan menggunakan
+
+Langkah 2
+
+Jika ada pemain yang sudah kalah
+
+Enemy1 Alive = false
+
+↓
+
+Enemy1 dilewati
+
+Hal ini dilakukan menggunakan
+
+Langkah 3
+
+Update tulisan giliran.
+
+Current Turn
+
+↓
+
+PLAYER TURN
+
+Langkah 4
+
+Cek kondisi kalah.
+
+Hand kosong?
+
+↓
+
+Player kalah
+
+Langkah 5
+
+Cek Freeze.
+
+Misalnya
+
+Enemy1 Frozen
+
+↓
+
+Skip Turn
+
+↓
+
+Freeze dihapus
+
+↓
+
+Lanjut ke pemain berikutnya
+
+Langkah 6
+
+Jika sekarang giliran musuh
+
+Enemy1
+
+↓
+
+EnemyTurn()
+
+Coroutine yang menjalankan AI musuh.
+
+Langkahnya
+
+Tunggu 1 detik
+
+↓
+
+Cari HandManager
+
+↓
+
+Mainkan kartu musuh
+
+↓
+
+Tunggu 0.5 detik
+
+↓
+
+EndTurn()
+
+12. Mengecek apakah tangan pemain kosong.
 
 ---
 
