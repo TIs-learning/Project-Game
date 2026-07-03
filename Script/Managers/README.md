@@ -328,3 +328,353 @@ EndTurn()
 ---
 
 # HandManagers.cs
+# HandManager.cs Documentation
+
+## Overview
+
+`HandManager` merupakan script utama yang bertanggung jawab mengelola seluruh aktivitas kartu dalam permainan. Script ini menangani proses pembagian kartu, pengambilan kartu dari deck, permainan kartu oleh pemain maupun musuh, pelaksanaan efek kartu, serta pengaturan tampilan kartu selama permainan berlangsung.
+
+---
+
+# Variables
+
+## Last Played Cards
+
+```csharp
+public CardData playerLastCard;
+public CardData enemy1LastCard;
+public CardData enemy2LastCard;
+```
+
+Menyimpan kartu terakhir yang dimainkan oleh Player, Enemy 1, dan Enemy 2. Data ini digunakan oleh efek **Repeat** untuk menjalankan kembali efek kartu terakhir yang dimainkan.
+
+---
+
+## Play Points
+
+```csharp
+public Transform playerPlayPoint;
+public Transform enemy1PlayPoint;
+public Transform enemy2PlayPoint;
+```
+
+Menentukan posisi tempat kartu dipindahkan setelah dimainkan sehingga kartu tidak lagi berada di tangan pemain.
+
+---
+
+## Card Back
+
+```csharp
+public Sprite cardBack;
+```
+
+Sprite yang digunakan sebagai tampilan belakang kartu musuh agar isi kartu tidak dapat dilihat oleh pemain.
+
+---
+
+## Hand References
+
+```csharp
+public Transform enemy1Hand;
+public Transform enemy2Hand;
+public Transform handArea;
+```
+
+Referensi lokasi penyimpanan kartu untuk Player, Enemy 1, dan Enemy 2.
+
+---
+
+## Card Prefab & Deck
+
+```csharp
+public GameObject cardPrefab;
+public DeckManager deckManager;
+```
+
+- `cardPrefab` digunakan untuk membuat objek kartu baru.
+- `deckManager` digunakan untuk mengambil kartu dari deck.
+
+---
+
+## Starting Hand Size
+
+```csharp
+public int startingHandSize = 5;
+```
+
+Menentukan jumlah kartu awal yang diterima setiap pemain saat permainan dimulai.
+
+---
+
+# Methods
+
+## Start()
+
+```csharp
+void Start()
+```
+
+Method ini dipanggil secara otomatis ketika permainan dimulai.
+
+### Fungsi
+
+- Membuat deck baru.
+- Mengacak isi deck.
+- Membagikan kartu awal kepada Player.
+- Membagikan kartu awal kepada Enemy 1.
+- Membagikan kartu awal kepada Enemy 2.
+
+---
+
+## DrawStartingHand()
+
+```csharp
+void DrawStartingHand(Transform hand)
+```
+
+### Fungsi
+
+Mengambil kartu dari deck sebanyak jumlah yang ditentukan pada `startingHandSize`.
+
+Method ini memanggil `DrawCardToHand()` secara berulang hingga jumlah kartu awal terpenuhi.
+
+---
+
+## DrawCardToHand()
+
+```csharp
+public void DrawCardToHand(Transform hand)
+```
+
+### Fungsi
+
+Mengambil satu kartu dari deck kemudian menambahkannya ke tangan pemain atau musuh.
+
+### Proses
+
+- Mengambil data kartu dari `DeckManager`.
+- Membuat GameObject kartu baru.
+- Menghubungkan komponen `CardDisplay`.
+- Menampilkan informasi kartu.
+- Jika kartu dimiliki musuh, gambar kartu diganti menggunakan `cardBack`.
+
+---
+
+## RemoveRandomCard()
+
+```csharp
+public void RemoveRandomCard(Transform hand)
+```
+
+### Fungsi
+
+Menghapus satu kartu secara acak dari tangan target.
+
+Method ini digunakan oleh efek **Attack** ketika target tidak memiliki Shield.
+
+---
+
+## RefreshHand()
+
+```csharp
+void RefreshHand(Transform ownerHand, int targetSize)
+```
+
+### Fungsi
+
+Menambahkan kartu hingga jumlah kartu pada tangan pemain mencapai nilai yang ditentukan.
+
+Method ini digunakan oleh efek **Fire Refresh**.
+
+---
+
+## ResolveEffect()
+
+```csharp
+void ResolveEffect(CardData card, Transform ownerHand)
+```
+
+### Fungsi
+
+Method utama yang menjalankan efek kartu berdasarkan nilai `card.effect`.
+
+Efek yang didukung antara lain:
+
+### Draw
+
+Menambahkan kartu ke tangan sebanyak nilai `card.value`.
+
+---
+
+### Attack
+
+Menyerang salah satu lawan secara acak.
+
+Jika target memiliki Shield:
+
+- Shield akan dihapus.
+- Serangan dibatalkan.
+
+Jika target tidak memiliki Shield:
+
+- Satu kartu target akan dihapus secara acak.
+
+---
+
+### Repeat
+
+Mengulangi efek kartu terakhir yang dimainkan oleh pemilik kartu.
+
+Efek Repeat tidak dapat mengulang efek Repeat lainnya untuk menghindari rekursi tanpa akhir.
+
+---
+
+### Shield
+
+Mengaktifkan status Shield pada pemain sehingga serangan berikutnya dapat diblokir.
+
+---
+
+### Freeze
+
+Memilih salah satu lawan secara acak kemudian memberikan status Frozen sehingga lawan akan melewati giliran berikutnya.
+
+---
+
+### Peek
+
+Memperlihatkan seluruh kartu lawan selama dua detik.
+
+Efek ini hanya dapat digunakan oleh Player.
+
+---
+
+### Fire Refresh
+
+Mengisi kembali jumlah kartu di tangan hingga mencapai jumlah tertentu.
+
+---
+
+## RevealHand()
+
+```csharp
+IEnumerator RevealHand(Transform enemyHand)
+```
+
+### Fungsi
+
+Coroutine yang digunakan oleh efek Peek.
+
+### Proses
+
+- Membuka seluruh kartu musuh.
+- Menunggu selama dua detik.
+- Mengembalikan kartu ke kondisi tertutup.
+
+---
+
+## PlayCard()
+
+```csharp
+public void PlayCard(CardDisplay card)
+```
+
+### Fungsi
+
+Dipanggil ketika pemain memilih sebuah kartu.
+
+Method akan:
+
+- Memastikan bahwa saat ini merupakan giliran Player.
+- Memulai proses memainkan kartu melalui coroutine `PlayPlayerCard()`.
+
+---
+
+## PlayPlayerCard()
+
+```csharp
+IEnumerator PlayPlayerCard(CardDisplay card)
+```
+
+### Fungsi
+
+Menjalankan seluruh proses ketika Player memainkan kartu.
+
+### Proses
+
+- Menjalankan animasi perpindahan kartu.
+- Menjalankan efek kartu.
+- Memindahkan kartu ke area permainan.
+- Mengakhiri giliran pemain.
+
+---
+
+## PlayEnemyCard()
+
+```csharp
+IEnumerator PlayEnemyCard(CardDisplay card, Transform ownerHand, Transform playPoint)
+```
+
+### Fungsi
+
+Menjalankan proses permainan kartu milik musuh.
+
+Proses yang dilakukan sama seperti Player namun dijalankan secara otomatis oleh AI.
+
+---
+
+## EnemyPlayCard()
+
+```csharp
+public void EnemyPlayCard(Transform enemyHand)
+```
+
+### Fungsi
+
+Memilih satu kartu musuh secara acak kemudian memainkannya.
+
+Method ini digunakan ketika giliran musuh berlangsung.
+
+---
+
+## IsHandEmpty()
+
+```csharp
+public bool IsHandEmpty(Transform hand)
+```
+
+### Fungsi
+
+Memeriksa apakah suatu tangan masih memiliki kartu.
+
+### Return
+
+- `true` jika tangan kosong.
+- `false` jika masih terdapat kartu.
+
+---
+
+## PlaceCard()
+
+```csharp
+void PlaceCard(CardDisplay card, Transform playPoint)
+```
+
+### Fungsi
+
+Mengatur posisi kartu setelah selesai dimainkan.
+
+### Proses
+
+- Menghapus kartu sebelumnya pada area permainan.
+- Memindahkan kartu ke Play Point.
+- Mengatur ukuran kartu menjadi lebih kecil.
+- Menampilkan artwork asli kartu.
+- Menonaktifkan tombol klik.
+- Menyimpan kartu sebagai kartu terakhir yang dimainkan apabila bukan kartu Repeat.
+
+---
+
+# Summary
+
+`HandManager` merupakan pusat pengelolaan mekanisme kartu pada permainan. Script ini mengatur proses pembagian kartu, pengambilan kartu dari deck, permainan kartu oleh pemain maupun AI, pelaksanaan berbagai efek kartu seperti Draw, Attack, Repeat, Shield, Freeze, Peek, dan Fire Refresh, serta mengelola tampilan kartu dan penyimpanan kartu terakhir yang dimainkan. Dengan adanya script ini, seluruh mekanisme permainan kartu dapat berjalan secara terstruktur dan sesuai dengan aturan permainan.
