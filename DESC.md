@@ -114,37 +114,6 @@ Ultimate:
 
 ---
 
-# Struktur Folder 
-
-```text
-Game-Project/
-│
-├── README.md
-├── LICENSE
-├── docs/
-│   ├── GameDesign.md
-│   ├── GameplayRules.md
-│   ├── CardList.md
-│   ├── GameFlow.md
-│   └── UML/
-│
-├── Assets/
-│   ├── Art/
-│   ├── Audio/
-│   ├── Fonts/
-│   └── UI/
-│
-├── Scripts/
-├── Scenes/
-├── Prefabs/
-├── Materials/
-├── Animation/
-├── Packages/
-└── ProjectSettings/
-```
-
----
-
 # Pengembangan Selanjutnya?
 1. 📖 Game Overview (konsep game)
 2. 🎲 Gameplay Rules (aturan permainan)
