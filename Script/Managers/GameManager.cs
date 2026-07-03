@@ -1,27 +1,42 @@
+// Import Library
 using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
+// Deklarasi Class (inheritance)
 public class GameManager : MonoBehaviour
 {
+    
     public Image playerFreezeIcon;
     public Image enemy1FreezeIcon;
     public Image enemy2FreezeIcon;
+    
+    // Freeze Status
     public bool playerFrozen = false;
     public bool enemy1Frozen = false;
     public bool enemy2Frozen = false;
+    
     public TMP_Text turnText;
+
+    // Singleton
     public static GameManager Instance;
     public Turn currentTurn = Turn.Player;
+
+    // Alive Status
     public bool playerAlive = true;
     public bool enemy1Alive = true;
     public bool enemy2Alive = true;
+
+    // Shield Status
     public bool playerShield = false;
     public bool enemy1Shield = false;
     public bool enemy2Shield = false;
     public Image playerShieldIcon;
     public Image enemy1ShieldIcon;
     public Image enemy2ShieldIcon;
+
+    // Turn
     public enum Turn
     
     {
@@ -30,23 +45,27 @@ public class GameManager : MonoBehaviour
         Enemy2
     }
 
+    // Awake
     private void Awake()
     {
         Instance = this;
         UpdateTurnText();
     }
+    // UpdateShieldicons
 public void UpdateShieldIcons()
     {
     playerShieldIcon.gameObject.SetActive(playerShield);
     enemy1ShieldIcon.gameObject.SetActive(enemy1Shield);
     enemy2ShieldIcon.gameObject.SetActive(enemy2Shield);
     }
+    // Updatefreezeicons
 public void UpdateFreezeIcons()
 {
     playerFreezeIcon.gameObject.SetActive(playerFrozen);
     enemy1FreezeIcon.gameObject.SetActive(enemy1Frozen);
     enemy2FreezeIcon.gameObject.SetActive(enemy2Frozen);
 }
+    // UpdateTurnText
 void UpdateTurnText()
 {
     switch (currentTurn)
@@ -64,6 +83,7 @@ void UpdateTurnText()
             break;
     }
 }
+    // EndTurn
     public void EndTurn()
 {
     do
@@ -125,7 +145,7 @@ void UpdateTurnText()
         StartCoroutine(EnemyTurn());
     }
 }
-
+    // Enemy Turn
     IEnumerator EnemyTurn()
 {
     yield return new WaitForSeconds(1f);
@@ -145,6 +165,7 @@ void UpdateTurnText()
 
     EndTurn();
 }
+// CheckLoseCondition
 void CheckLoseCondition()
 {
     HandManager hand = FindFirstObjectByType<HandManager>();
