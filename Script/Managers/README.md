@@ -1,7 +1,6 @@
 # DeckManagers.cs
 
-DeckManager adalah salah satu script inti (core system) karena bertanggung jawab membangun, mengacak, dan mengelola deck yang nantinya akan digunakan oleh HandManager dan sistem permainan lainnya. Untuk dokumentasi, saya menyarankan membuat tiga flowchart terpisah (GenerateDeck, ShuffleDeck, dan DrawCard) seperti di atas agar setiap fungsi mudah dipahami dan tidak membuat satu diagram menjadi terlalu padat.
-
+DeckManager adalah salah satu script inti (core system) karena bertanggung jawab membangun, mengacak, dan mengelola deck yang nantinya akan digunakan oleh HandManager dan sistem permainan lainnya. 
 1. Script DeckManager menggunakan dua library utama, yaitu System.Collections.Generic dan UnityEngine.
 
 Library	Fungsi
