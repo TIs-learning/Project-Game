@@ -1,25 +1,38 @@
+// Import library
 using System.Collections;
 using UnityEngine;
 
+// Deklarasi Kelas HandManager (Inheritance)
 public class HandManager : MonoBehaviour
 {
+    // Penyimpanan kartu terakhir
     public CardData playerLastCard;
     public CardData enemy1LastCard;
     public CardData enemy2LastCard;
+
+    // Posisi kartu yang dimainkan
     public Transform playerPlayPoint;
     public Transform enemy1PlayPoint;
     public Transform enemy2PlayPoint;   
+
+    // Belakang Kartu
     public Sprite cardBack;
+
+    // Referensi Hand
     [Header("References")]
     public Transform enemy1Hand;
     public Transform enemy2Hand;
     public Transform handArea;
+
+    // Prefab dan Deck
     public GameObject cardPrefab;
     public DeckManager deckManager;
 
+    // Pengaturan jumlah kartu awal
     [Header("Settings")]
     public int startingHandSize = 5;
 
+// Start()
 void Start()
 {
     deckManager.GenerateDeck(CardElement.Fire);
@@ -32,6 +45,7 @@ void Start()
     DrawStartingHand(enemy2Hand);
 }
 
+// DrawStartingHand()
 void DrawStartingHand(Transform hand)
 {
     for (int i = 0; i < startingHandSize; i++)
@@ -40,6 +54,7 @@ void DrawStartingHand(Transform hand)
     }
 }
 
+// DrawCardToHand()
 public void DrawCardToHand(Transform hand)
 {
     CardData card = deckManager.DrawCard();
@@ -62,6 +77,8 @@ public void DrawCardToHand(Transform hand)
     }
     }
 }
+
+// RemoveRandomCard()
 public void RemoveRandomCard(Transform hand)
 {
     if (hand.childCount == 0)
@@ -71,6 +88,8 @@ public void RemoveRandomCard(Transform hand)
 
     Destroy(hand.GetChild(randomIndex).gameObject);
 }
+
+// RefreshHand()
 void RefreshHand(Transform ownerHand, int targetSize)
 {
     int cardsNeeded = targetSize - ownerHand.childCount;
@@ -83,8 +102,11 @@ void RefreshHand(Transform ownerHand, int targetSize)
         DrawCardToHand(ownerHand);
     }
 }
+
+// ResolveEffect()
 void ResolveEffect(CardData card, Transform ownerHand){
     switch (card.effect){
+        // Effect Draw
         case EffectType.Draw:
 
             Debug.Log("Drawing 2 cards!");
@@ -95,13 +117,15 @@ void ResolveEffect(CardData card, Transform ownerHand){
         }
         
             break;
-
+            
+        // Effect Attack
         case EffectType.Attack:
 
             Debug.Log("Attack!");
 
             Transform targetHand = null;
 
+            // IsHandEmpty()
             if (ownerHand == handArea)
             {
                 targetHand = (Random.value < 0.5f) ? enemy1Hand : enemy2Hand;
@@ -300,6 +324,7 @@ void ResolveEffect(CardData card, Transform ownerHand){
     }
 }
     }
+    // PlayCard() and PlaceCard()
     public void PlayCard(CardDisplay card){
     if (GameManager.Instance.currentTurn != GameManager.Turn.Player)
     {
@@ -344,6 +369,7 @@ IEnumerator PlayEnemyCard(CardDisplay card, Transform ownerHand, Transform playP
 
     PlaceCard(card, playPoint);
 }
+// EnemyPlayCard()
 public void EnemyPlayCard(Transform enemyHand)
 {
     if (enemyHand.childCount == 0)
