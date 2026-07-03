@@ -328,7 +328,6 @@ EndTurn()
 ---
 
 # HandManagers.cs
-# HandManager.cs Documentation
 
 ## Overview
 
