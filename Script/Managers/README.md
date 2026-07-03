@@ -5,11 +5,12 @@ DeckManager adalah salah satu script inti (core system) karena bertanggung jawab
 1. Script DeckManager menggunakan dua library utama, yaitu System.Collections.Generic dan UnityEngine.
 
 Library	Fungsi
-System.Collections.Generic	Menyediakan koleksi data seperti List<T> yang digunakan untuk menyimpan kumpulan kartu.
-UnityEngine	Menyediakan fitur utama Unity seperti MonoBehaviour, Random, Debug, dan atribut Header
+- System.Collections.Generic	Menyediakan koleksi data seperti List<T> yang digunakan untuk menyimpan kumpulan kartu.
+- UnityEngine	Menyediakan fitur utama Unity seperti MonoBehaviour, Random, Debug, dan atribut Header
 
 2. Bagian ini menyimpan seluruh kumpulan kartu berdasarkan elemen.
 
+```text
 Neutral Cards
 ├── Draw
 ├── Attack
@@ -30,6 +31,7 @@ Shadow Cards
 ├── Peek
 ├── Guess
 └── Confuse
+```
 
 Semua list ini biasanya diisi melalui Inspector Unity.
 
